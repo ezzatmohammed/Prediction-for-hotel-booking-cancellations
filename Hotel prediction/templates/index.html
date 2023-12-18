@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel status Prediction</title>
+    <style>
+        /* CSS STYLES */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .result h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .result p {
+            margin: 0;
+            color: #555;
+        }
+        /* END OF CSS STYLES */
+    </style>
+</head>
+<body>
+    <h1>Hotel status Prediction</h1>
+    <div class="container">
+        <h2>Enter Details for Prediction</h2>
+        <form action="/predict" method="post">
+            <label for="number_of_week_nights">Number of Week Nights:</label>
+            <input type="text" id="number_of_week_nights" name="number of week nights">
+    
+            <label for="lead_time">Lead Time:</label>
+            <input type="text" id="lead_time" name="lead time">
+    
+            <label for="average_price">Average Price:</label>
+            <input type="text" id="average_price" name="average price">
+    
+            <label for="special_requests">Special Requests:</label>
+            <input type="text" id="special_requests" name="special requests">
+    
+            <label for="day_of_reservation">Day of Reservation:</label>
+            <input type="text" id="day_of_reservation" name="day of reservation">
+    
+            <label for="month_of_reservation">Month of Reservation:</label>
+            <input type="text" id="month_of_reservation" name="month of reservation">
+    
+            <input type="submit" value="Predict">
+        </form>
+    
+        {% if prediction %}
+        <div class="result">
+            <h2>Prediction Result:</h2>
+            <p>{{ prediction }}</p>
+        </div>
+        {% elif status %}
+        <div class="result">
+            <h2>Status:</h2>
+            <p>{{ status }}</p>
+        </div>
+        {% elif error_message %}
+        <div class="result">
+            <h2>Error:</h2>
+            <p>{{ error_message }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
